@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+	xmlns:wicket="http://wicket.apache.org/">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="CACHE-CONTROL" content="no-cache" />
+
+	<link rel="stylesheet" type="text/css" href="css/styles.css"/>
+
+	<style type="text/css">
+	.feedbackPanelERROR {
+		color: #900;
+	}
+	
+	html, body {
+		height:100%;
+	}	
+
+	#wrapperDiv {
+		height:85%;
+		width:100%;
+		display:table;
+		vertical-align:middle;
+	}
+	
+	#outerDiv {
+		display:table-cell;
+		vertical-align:middle;
+	}
+	
+	#contentWrapDiv {
+		position:relative;
+		left:50%;
+		float:left;
+	}
+	
+	#contentDiv {
+		border: none;
+		padding: 20px 20px;
+		position: relative;
+		text-align: center;
+		left:-50%;
+		width: 320px;
+	}
+	
+	</style>
+	
+	<!--[if gte IE 5]>
+	<style type="text/css">
+		#contentWrapDiv {top:50%}
+		#contentDiv {top:-50%;}
+	</style>
+	<![endif]-->
+
+
+	<title>Leland :: Login</title>
+	
+	<script src="js/prototype.js"></script>
+	<script>
+	function putFocusOnTextbox()
+	{
+		var oUser = $('input-username'); 
+		if(oUser.value.length == 0)
+			oUser.focus();
+		else
+			$('input-password').focus();
+	}
+	</script>
+</head>
+	
+
+
+<body onload="putFocusOnTextbox()">
+
+
+<div id="wrapperDiv">
+	<div id="outerDiv">
+		<div id="contentWrapDiv">
+			<div id="contentDiv">
+				<div align="center">
+				<fieldset>
+				<legend>Leland Login</legend>
+				<div wicket:id="panel-signIn"></div>
+				</fieldset>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div wicket:id="page-footer"></div>	
+</body>
+</html>

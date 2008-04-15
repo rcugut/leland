@@ -1,0 +1,53 @@
+<html xmlns:wicket>
+<head>
+</head>
+<wicket:extend>
+<form wicket:id="form-newClient">
+
+<div class="form">
+
+<fieldset>
+
+<table class="formField" cellpadding="2" cellspacing="2" border="0">
+<tr>
+	<td class="fieldLabel req">Tip client</td>
+	<td class="fieldInput"><select wicket:id="select-clientType"></select></td>
+</tr>
+</table>
+
+
+<table class="formField" cellpadding="2" cellspacing="2" border="0">
+<tr>
+	<td class="fieldLabel req">Nume</td>
+	<td class="fieldInput"><input wicket:id="input-clientName" type="text" style="width: 300px" /></td>
+</tr>
+</table>
+
+<table class="formField" cellpadding="2" cellspacing="2" border="0">
+<tr>
+	<td class="fieldLabel req"><span wicket:id="label-clientPersonalNumberType">CNP/CUI</span></td>
+	<td class="fieldInput"><input wicket:id="input-clientPersonalNumber" type="text" style="width: 120px" />
+	</td>
+</tr>
+</table>
+
+
+<table class="formField" cellpadding="2" cellspacing="2" border="0">
+<tr>
+	<td class="fieldLabel req"><span wicket:id="label-clientRegNumberType">CI/NrInregComer</span></td>
+	<td class="fieldInput"><input wicket:id="input-clientRegNumber" type="text" /></td>
+</tr>
+</table>
+
+
+</fieldset>
+
+</div>
+
+<br />
+
+<input type="submit" value="Submit" />
+
+</form>
+</wicket:extend>
+</html>
