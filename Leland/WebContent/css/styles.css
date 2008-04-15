@@ -1,0 +1,33 @@
+body {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+input[type=submit] {
+	font-weight: bold;
+}
+
+
+div.form {
+	width: 500px;
+}
+
+div.form table.formField {
+	background: #dee;
+	margin: 2px 0;
+	width: 100%
+}
+
+div.form table.formField td.fieldLabel {
+	width: 120px;
+	text-align: right;
+	font-size: smaller;
+}
+
+div.form table.formField td.req {
+	font-weight: bold;
+}
+
+
+div.form table.formField td.fieldInput {
+	text-align: left;
+} 
