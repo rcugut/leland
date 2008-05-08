@@ -14,8 +14,7 @@ public class OfferService
 		extends EntityWithName
 {
 	protected BillingScheduleType billingSchedule;
-	protected double basePrice;
-	
+	protected double basePrice;	
 	
 	
 	public double getBasePrice()

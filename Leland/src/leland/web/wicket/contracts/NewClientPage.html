@@ -7,6 +7,8 @@
 <div class="form">
 
 <fieldset>
+<legend>Date client</legend>
+
 
 <table class="formField" cellpadding="2" cellspacing="2" border="0">
 <tr>
@@ -39,14 +41,51 @@
 </tr>
 </table>
 
+</fieldset>
+
+<br />
+
+
+<fieldset>
+<legend>Date contract</legend>
+
+<table class="formField" cellpadding="2" cellspacing="2" border="0">
+<tr>
+	<td class="fieldLabel req">Nr contract</td>
+	<td class="fieldInput"><input id="input-contractNumber" type="text" /></td>
+</tr>
+</table>
+
+<table class="formField" cellpadding="2" cellspacing="2" border="0">
+<tr>
+	<td class="fieldLabel req">Data semnarii</td>
+	<td class="fieldInput"><input id="input-contractSignDate" type="text" /></td>
+</tr>
+</table>
+
+<table class="formField" cellpadding="2" cellspacing="2" border="0">
+<tr>
+	<td class="fieldLabel req">Data incheierii</td>
+	<td class="fieldInput"><input id="input-contractEndDate" type="text" /></td>
+</tr>
+</table>
+
+
+
 
 </fieldset>
+
+
+
+
+
+
 
 </div>
 
 <br />
 
-<input type="submit" value="Submit" />
+<input type="submit" value="Submit" style="padding: 4px 10px; cursor: pointer" />
 
 </form>
 </wicket:extend>
