@@ -1,8 +1,6 @@
 package leland.domain;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -13,7 +11,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import leland.domain.base.BaseEntity;
-import leland.domain.services.ContractService;
 
 @Entity
 public final class ContractDocument
@@ -23,11 +20,9 @@ public final class ContractDocument
 	
 	private String number;
 
-	private Date beginDate; // data semnarii
+	private Date signDate; // data semnarii
 	private Date stopDate; // valabilitate
 
-	private Set<ContractService> contractedServices = new HashSet<ContractService>();
-	
 	
 	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name="client_id", insertable=false, updatable=false, nullable=false)
@@ -52,13 +47,13 @@ public final class ContractDocument
 
 	@Basic(optional=false)
 	@Temporal(TemporalType.DATE)
-	public Date getBeginDate()
+	public Date getSignDate()
 	{
-		return this.beginDate;
+		return this.signDate;
 	}
-	public void setBeginDate(Date beginDate)
+	public void setSignDate(Date beginDate)
 	{
-		this.beginDate = beginDate;
+		this.signDate = beginDate;
 	}
 
 	@Temporal(TemporalType.DATE)

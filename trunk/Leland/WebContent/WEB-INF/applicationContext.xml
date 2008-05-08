@@ -54,7 +54,6 @@
 				<value>leland.domain.Address</value>
 				<value>leland.domain.Client</value>
 				<value>leland.domain.ContactPerson</value>
-				<value>leland.domain.Contract</value>
 				<value>leland.domain.ContractDocument</value>
 				<value>leland.domain.Location</value>
 			</list>
@@ -100,4 +99,21 @@
 <!-- 		<property name="userManager" ref="" /> -->
 	</bean>
 
+
+
+
+
+	<bean id="billingEngine" class="leland.core.BillingEngine">
+		<constructor-arg ref="clientManager" />
+	</bean>
+
+	<!--  Cron Tasks -->
+	
+	<bean id="scheduledTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+    	<!-- wait 10 seconds before starting repeated execution -->		
+		<property name="delay" value="10000" />
+    	<!-- run once -->
+    	<property name="period" value="0" />
+		<property name="timerTask" ref="monthlyBillingTask" />	
+	</bean>
 </beans>

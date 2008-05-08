@@ -16,7 +16,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import leland.domain.base.BaseEntity;
+import leland.domain.billing.Invoice;
+import leland.domain.billing.Payment;
 import leland.domain.enums.ClientType;
+import leland.domain.services.ContractService;
 
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
@@ -37,10 +40,15 @@ public class Client
 	private String iban;
 	private String bank;
 	
+	
 	private Set<ContactPerson> contactPersons = new HashSet<ContactPerson>();
-	
 
+	private List<ContractDocument> contractDocuments = new ArrayList<ContractDocument>();
+	private Set<ContractService> contractedServices = new HashSet<ContractService>();
 	
+	
+	private Set<Invoice> invoices = new HashSet<Invoice>(); 
+	private Set<Payment> payments = new HashSet<Payment>();
 	
 
 	
@@ -141,46 +149,77 @@ public class Client
 	
 
 
-	private List<ContractDocument> documents = new ArrayList<ContractDocument>();
+	
+	
+	
+	
 	
 	
 	
 	public Client addAdditionalDocument(ContractDocument doc)
 	{
-		if(this.documents.size()==0)
-			this.getDocuments().add(null); // add fake base document on position 0
-		this.getDocuments().add(doc);
+		if(this.contractDocuments.size()==0)
+			this.getContractDocuments().add(null); // add fake base document on position 0
+		this.getContractDocuments().add(doc);
 		doc.setClient(this);
 		return this;
 	}
 	
 	
-	
 	@Transient
 	public ContractDocument getBaseDocument()
 	{
-		return this.documents.size()>0 ? this.documents.get(0) : null; 
+		return this.contractDocuments.size()>0 ? this.contractDocuments.get(0) : null; 
 	}
 	public Client setBaseDocument(ContractDocument baseDocument)
 	{
 		baseDocument.setClient(this);
-		if(this.documents.size()>0)
-			this.documents.set(0, baseDocument);
+		if(this.contractDocuments.size()>0)
+			this.contractDocuments.set(0, baseDocument);
 		else
-			this.documents.add(0, baseDocument);
+			this.contractDocuments.add(0, baseDocument);
 		return this;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@org.hibernate.annotations.IndexColumn(name="index", base=0)
 	@JoinColumn(name="contract_id", nullable=false)
-	public List<ContractDocument> getDocuments()
+	public List<ContractDocument> getContractDocuments()
 	{
-		return this.documents;
+		return this.contractDocuments;
 	}
-	public Client setDocuments(List<ContractDocument> additionalDocuments)
+	public Client setContractDocuments(List<ContractDocument> additionalDocuments)
 	{
-		this.documents = additionalDocuments;
+		this.contractDocuments = additionalDocuments;
 		return this;
+	}
+	
+
+
+	public Set<Invoice> getInvoices()
+	{
+		return this.invoices;
+	}
+	public void setInvoices(Set<Invoice> invoices)
+	{
+		this.invoices = invoices;
+	}
+	
+	public Set<Payment> getPayments()
+	{
+		return this.payments;
+	}
+	public void setPayments(Set<Payment> payments)
+	{
+		this.payments = payments;
+	}
+	
+	public Set<ContractService> getContractedServices()
+	{
+		return this.contractedServices;
+	}
+	public void setContractedServices(Set<ContractService> contractedServices)
+	{
+		this.contractedServices = contractedServices;
 	}
 }
