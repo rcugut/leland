@@ -4,7 +4,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
-import leland.domain.networking.BandwidthAllocation;
 
 
 
@@ -12,14 +11,14 @@ import leland.domain.networking.BandwidthAllocation;
 public class InternetServiceDefinition
 		extends PerLocationCustomServiceDefinition
 {
-	protected BandwidthAllocation bandwidthAllocation;
+	protected ContractBandwidthAllocation bandwidthAllocation;
 
 	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, optional=false)
-	public BandwidthAllocation getBandwidthAllocation()
+	public ContractBandwidthAllocation getBandwidthAllocation()
 	{
 		return this.bandwidthAllocation;
 	}
-	public void setBandwidthAllocation(BandwidthAllocation bandwidthAllocation)
+	public void setBandwidthAllocation(ContractBandwidthAllocation bandwidthAllocation)
 	{
 		this.bandwidthAllocation = bandwidthAllocation;
 	}
