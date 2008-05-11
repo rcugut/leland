@@ -1,39 +1,31 @@
 package leland.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import leland.domain.base.BaseEntity;
 
 @Entity
+@Table(name="LND_CONTRACT_DOCUMENT")
 public final class ContractDocument
 		extends BaseEntity
 {
-	private Client client;
-	
 	private String number;
 
 	private Date signDate; // data semnarii
 	private Date stopDate; // valabilitate
 
+	private List<ContractChange> contractChanges = new ArrayList<ContractChange>();
 	
-	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-	@JoinColumn(name="client_id", insertable=false, updatable=false, nullable=false)
-	public Client getClient()
-	{
-		return this.client;
-	}
-	public void setClient(Client client)
-	{
-		this.client = client;
-	}
 	
 	@Basic(optional=false)
 	public String getNumber()
@@ -64,5 +56,16 @@ public final class ContractDocument
 	public void setStopDate(Date stopDate)
 	{
 		this.stopDate = stopDate;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@org.hibernate.annotations.IndexColumn(name="index", base=0)
+	public List<ContractChange> getContractChanges()
+	{
+		return this.contractChanges;
+	}
+	public void setContractChanges(List<ContractChange> contractChanges)
+	{
+		this.contractChanges = contractChanges;
 	}
 }

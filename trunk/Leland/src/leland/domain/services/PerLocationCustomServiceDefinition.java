@@ -2,7 +2,7 @@ package leland.domain.services;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class PerLocationCustomServiceDefinition
@@ -10,7 +10,7 @@ public class PerLocationCustomServiceDefinition
 {
 	protected InternetLocation location;
 
-	@OneToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, optional=false)
 	public InternetLocation getLocation()
 	{
 		return this.location;
