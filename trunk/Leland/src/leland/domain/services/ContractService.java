@@ -3,7 +3,6 @@ package leland.domain.services;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import leland.domain.services.prefilled.OfferService;
 
 @Entity
 @DiscriminatorValue("0")
