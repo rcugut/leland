@@ -16,8 +16,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import leland.domain.base.BaseEntity;
-import leland.domain.billing.Invoice;
-import leland.domain.billing.Payment;
+import leland.domain.billing.client.ClientInvoice;
+import leland.domain.billing.client.ClientPayment;
 import leland.domain.enums.ClientType;
 import leland.domain.services.ContractService;
 
@@ -25,7 +25,7 @@ import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 
 @Entity
-public class Client
+public final class Client
 		extends BaseEntity
 {
 	private ClientType type;
@@ -35,23 +35,18 @@ public class Client
 	private String personalNumber; // CNP sau CUI
 	private String regNumber; // nrBuletin sau nrRegComert (optional)
 	
-	private Address mainAddress;
-	
-	private String iban;
-	private String bank;
-	
+	private Address billingAddress; // adresa facturare
 	
 	private Set<ContactPerson> contactPersons = new HashSet<ContactPerson>();
 
 	private List<ContractDocument> contractDocuments = new ArrayList<ContractDocument>();
 	private Set<ContractService> contractedServices = new HashSet<ContractService>();
-	
-	
-	private Set<Invoice> invoices = new HashSet<Invoice>(); 
-	private Set<Payment> payments = new HashSet<Payment>();
-	
 
-	
+	private Set<ClientInvoice> invoices = new HashSet<ClientInvoice>(); 
+	private Set<ClientPayment> payments = new HashSet<ClientPayment>();
+
+
+
 	////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -106,35 +101,16 @@ public class Client
 	}
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	public Address getMainAddress()
+	public Address getBillingAddress()
 	{
-		return this.mainAddress;
+		return this.billingAddress;
 	}
-	public Client setMainAddress(Address address)
+	public Client setBillingAddress(Address address)
 	{
-		this.mainAddress = address;
+		this.billingAddress = address;
 		return this;
 	}
 
-	public String getIban()
-	{
-		return this.iban;
-	}
-	public Client setIban(String iban)
-	{
-		this.iban = iban;
-		return this;
-	}
-
-	public String getBank()
-	{
-		return this.bank;
-	}
-	public Client setBank(String bank)
-	{
-		this.bank = bank;
-		return this;
-	}
 	
 	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	public Set<ContactPerson> getContactPersons()
@@ -196,20 +172,20 @@ public class Client
 	
 
 
-	public Set<Invoice> getInvoices()
+	public Set<ClientInvoice> getInvoices()
 	{
 		return this.invoices;
 	}
-	public void setInvoices(Set<Invoice> invoices)
+	public void setInvoices(Set<ClientInvoice> invoices)
 	{
 		this.invoices = invoices;
 	}
 	
-	public Set<Payment> getPayments()
+	public Set<ClientPayment> getPayments()
 	{
 		return this.payments;
 	}
-	public void setPayments(Set<Payment> payments)
+	public void setPayments(Set<ClientPayment> payments)
 	{
 		this.payments = payments;
 	}

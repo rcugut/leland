@@ -2,6 +2,7 @@ package leland.domain.services.prefilled;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import leland.domain.base.EntityWithName;
 import leland.domain.enums.BillingScheduleType;
@@ -10,6 +11,7 @@ import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 
 @Entity
+@Table(name="LND_OFFER_SERVICE")
 public class OfferService
 		extends EntityWithName
 {

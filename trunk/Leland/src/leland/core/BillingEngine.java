@@ -1,12 +1,11 @@
 package leland.core;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 import leland.dao.ClientManager;
 import leland.domain.Client;
-import leland.domain.billing.Invoice;
+import leland.domain.billing.client.ClientInvoice;
 
 
 public class BillingEngine
@@ -25,7 +24,7 @@ public class BillingEngine
 		List<Client> allClients = clientManager.getDao().getAllActive(Client.class);
 		for(Client client: allClients)
 		{
-			Invoice invoice = new Invoice();
+			ClientInvoice invoice = new ClientInvoice();
 			invoice.setCode("");
 			invoice.setNumber("");
 			invoice.setIssueDate(GregorianCalendar.getInstance().getTime());

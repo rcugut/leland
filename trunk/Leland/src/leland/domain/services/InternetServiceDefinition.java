@@ -4,7 +4,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
-import leland.domain.tech.BandwidthAllocation;
+import leland.domain.networking.BandwidthAllocation;
 
 
 

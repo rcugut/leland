@@ -1,16 +1,18 @@
-package leland.domain.billing;
+package leland.domain.billing.client;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import leland.domain.Client;
 import leland.domain.base.BaseEntity;
 import leland.domain.enums.PaymentType;
 
 @Entity
-public class Payment
+@Table(name="LND_CLIENT_PAYMENT")
+public final class ClientPayment
 		extends BaseEntity
 {
 	protected Client client;

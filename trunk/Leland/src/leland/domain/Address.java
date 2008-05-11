@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import leland.domain.base.BaseEntity;
 
 @Entity
-public class Address
+public final class Address
 		extends BaseEntity
 {
 	private String street;
