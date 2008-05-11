@@ -1,4 +1,4 @@
-package leland.domain.services.prefilled;
+package leland.domain.services;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,7 +13,6 @@ import javax.persistence.Table;
 
 import leland.domain.base.EntityWithName;
 import leland.domain.enums.BillingScheduleType;
-import leland.domain.services.ServiceDefinition;
 
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
