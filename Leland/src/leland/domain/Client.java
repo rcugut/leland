@@ -41,6 +41,7 @@ public final class Client
 
 	private List<ContractDocument> contractDocuments = new ArrayList<ContractDocument>();
 	private Set<ContractService> contractedServices = new HashSet<ContractService>();
+	
 
 	private Set<ClientInvoice> invoices = new HashSet<ClientInvoice>(); 
 	private Set<ClientPayment> payments = new HashSet<ClientPayment>();
@@ -125,22 +126,13 @@ public final class Client
 	
 
 
-	
-	
-	
-	
-	
-	
-	
 	public Client addAdditionalDocument(ContractDocument doc)
 	{
 		if(this.contractDocuments.size()==0)
 			this.getContractDocuments().add(null); // add fake base document on position 0
 		this.getContractDocuments().add(doc);
-		doc.setClient(this);
 		return this;
 	}
-	
 	
 	@Transient
 	public ContractDocument getBaseDocument()
@@ -149,7 +141,6 @@ public final class Client
 	}
 	public Client setBaseDocument(ContractDocument baseDocument)
 	{
-		baseDocument.setClient(this);
 		if(this.contractDocuments.size()>0)
 			this.contractDocuments.set(0, baseDocument);
 		else
