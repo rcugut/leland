@@ -1,15 +1,17 @@
-package leland.domain.billing;
+package leland.domain.billing.client;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import leland.domain.base.EntityWithName;
 
 @Entity
-public class InvoiceRow
+@Table(name="LND_CLIENT_INVOICE_ROW")
+public final class ClientInvoiceRow
 		extends EntityWithName
 {
-	private Invoice invoice;
+	private ClientInvoice invoice;
 	
 	private String description;
 	private int quantity;
@@ -21,11 +23,11 @@ public class InvoiceRow
 	
 	
 	@ManyToOne()
-	public Invoice getInvoice()
+	public ClientInvoice getInvoice()
 	{
 		return this.invoice;
 	}
-	public void setInvoice(Invoice invoice)
+	public void setInvoice(ClientInvoice invoice)
 	{
 		this.invoice = invoice;
 	}

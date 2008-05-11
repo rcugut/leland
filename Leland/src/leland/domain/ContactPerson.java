@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import leland.domain.base.BaseEntity;
 
 @Entity
-public class ContactPerson
+public final class ContactPerson
 		extends BaseEntity
 {
 //	private int typeBitMask; // [tech][financial][sales]
@@ -17,6 +17,7 @@ public class ContactPerson
 	private String fax;
 	private String email;
 
+	private String otherInfo;
 	
 	
 	@Basic(optional=false)
@@ -68,5 +69,14 @@ public class ContactPerson
 	{
 		this.email = email;
 		return this;
+	}
+
+	public String getOtherInfo()
+	{
+		return this.otherInfo;
+	}
+	public void setOtherInfo(String otherInfo)
+	{
+		this.otherInfo = otherInfo;
 	}
 }

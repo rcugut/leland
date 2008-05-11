@@ -1,12 +1,16 @@
 package leland.domain.services;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import leland.domain.ContractDocument;
 import leland.domain.base.BaseEntity;
 import leland.domain.services.prefilled.OfferService;
 
 @Entity
+@Table(name="LND_CONTRACT_SERVICE")
 public final class ContractService
 		extends BaseEntity
 {
@@ -18,11 +22,17 @@ public final class ContractService
 	private ServiceDefinition serviceDefinition;
 
 
-	
-	
-	
-	
-	
+	@OneToOne
+	public ContractDocument getContractDocument()
+	{
+		return this.contractDocument;
+	}
+	public void setContractDocument(ContractDocument contractDocument)
+	{
+		this.contractDocument = contractDocument;
+	}
+
+	@ManyToOne
 	public OfferService getOfferService()
 	{
 		return this.offerService;
@@ -41,6 +51,7 @@ public final class ContractService
 		this.contractedPrice = contractedPrice;
 	}
 
+	@OneToOne
 	public ServiceDefinition getServiceDefinition()
 	{
 		return this.serviceDefinition;

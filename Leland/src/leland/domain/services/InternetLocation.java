@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 
 import leland.domain.Location;
 import leland.domain.base.BaseEntity;
-import leland.domain.tech.NetworkAddress;
+import leland.domain.networking.NetworkAddress;
 
 @Entity
 public class InternetLocation

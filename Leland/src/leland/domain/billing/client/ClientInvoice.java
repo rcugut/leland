@@ -1,4 +1,4 @@
-package leland.domain.billing;
+package leland.domain.billing.client;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,12 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import leland.domain.Client;
 import leland.domain.base.BaseEntity;
 
 @Entity
-public class Invoice
+@Table(name="LND_CLIENT_INVOICE")
+public final class ClientInvoice
 		extends BaseEntity
 {
 	private Client client;
@@ -28,7 +30,7 @@ public class Invoice
 	private Date issueDate;
 	private Date dueDate;
 
-	private List<InvoiceRow> rows = new ArrayList<InvoiceRow>();
+	private List<ClientInvoiceRow> rows = new ArrayList<ClientInvoiceRow>();
 
 	
 	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
@@ -80,11 +82,11 @@ public class Invoice
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "invoice", fetch=FetchType.LAZY)
-	public List<InvoiceRow> getRows()
+	public List<ClientInvoiceRow> getRows()
 	{
 		return this.rows;
 	}
-	public void setRows(List<InvoiceRow> rows)
+	public void setRows(List<ClientInvoiceRow> rows)
 	{
 		this.rows = rows;
 	}
