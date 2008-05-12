@@ -1,6 +1,9 @@
 package leland.domain;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -16,10 +19,11 @@ import org.hibernate.annotations.Type;
 @Entity
 @Table(name="LND_CONTRACT_SERVICE_GENERIC")
 @Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn(name = "discriminator", discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorValue("1")
 public class ContractGenericService
 		extends BaseEntity
 {
-//	protected OfferService 
 	protected BillingScheduleType billingType;
 	protected double contractedPrice;
 	protected String details;

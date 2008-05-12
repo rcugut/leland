@@ -1,4 +1,4 @@
-package leland.domain.billing.client;
+package leland.domain.billing;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;

@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import leland.domain.base.BaseEntity;
@@ -20,7 +20,7 @@ public class Location
 	protected Address address;
 	protected Set<NetworkAddress> networkAddresses = new HashSet<NetworkAddress>();
 	
-	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	public Address getAddress()
 	{
 		return this.address;

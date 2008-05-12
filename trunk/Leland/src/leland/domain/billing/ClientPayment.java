@@ -1,4 +1,4 @@
-package leland.domain.billing.client;
+package leland.domain.billing;
 
 import java.util.HashMap;
 import java.util.Map;

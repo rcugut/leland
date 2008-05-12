@@ -1,4 +1,4 @@
-package leland.domain.billing.client;
+package leland.domain.billing;
 
 import java.util.ArrayList;
 import java.util.Date;

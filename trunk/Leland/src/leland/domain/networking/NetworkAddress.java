@@ -1,11 +1,14 @@
 package leland.domain.networking;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import leland.domain.base.BaseEntity;
 
 @Entity
+@Table(name="LND_NETWORK_ADDRESS")
 public class NetworkAddress
 		extends BaseEntity
 {
@@ -14,7 +17,7 @@ public class NetworkAddress
 	protected String cidrNotation; // i.e. x.x.x.x/y
 
 	
-	@OneToOne
+	@ManyToOne(cascade=CascadeType.REFRESH)
 	public NetworkAddress getParent()
 	{
 		return this.parent;
