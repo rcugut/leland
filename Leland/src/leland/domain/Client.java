@@ -13,19 +13,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import leland.domain.base.BaseEntity;
 import leland.domain.billing.client.ClientInvoice;
 import leland.domain.billing.client.ClientPayment;
 import leland.domain.enums.ClientType;
-import leland.domain.services.ContractService;
 
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 
 @Entity
-public final class Client
+@Table(name="LND_CLIENT")
+public class Client
 		extends BaseEntity
 {
 	private ClientType type;
@@ -40,7 +41,7 @@ public final class Client
 	private Set<ContactPerson> contactPersons = new HashSet<ContactPerson>();
 
 	private List<ContractDocument> contractDocuments = new ArrayList<ContractDocument>();
-	private Set<ContractService> contractedServices = new HashSet<ContractService>();
+	private Set<ContractGenericService> contractedServices = new HashSet<ContractGenericService>();
 	
 
 	private Set<ClientInvoice> invoices = new HashSet<ClientInvoice>(); 
@@ -181,11 +182,11 @@ public final class Client
 		this.payments = payments;
 	}
 	
-	public Set<ContractService> getContractedServices()
+	public Set<ContractGenericService> getContractedServices()
 	{
 		return this.contractedServices;
 	}
-	public void setContractedServices(Set<ContractService> contractedServices)
+	public void setContractedServices(Set<ContractGenericService> contractedServices)
 	{
 		this.contractedServices = contractedServices;
 	}

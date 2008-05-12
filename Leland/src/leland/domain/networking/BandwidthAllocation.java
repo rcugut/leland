@@ -7,20 +7,19 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-import leland.domain.base.BaseEntity;
-import leland.domain.networking.NetworkAddress;
+import leland.domain.ContractBandwidthAllocation;
 
 @Entity
-public class BandwidthAllocation
-		extends BaseEntity
+public final class BandwidthAllocation
+		extends ContractBandwidthAllocation
 {
-	protected int cir; //Committed Information Rate - min garantat
-	protected int mir; //Maximum Information Rate - max posibil
+	private int cir; //Committed Information Rate - min garantat
+	private int mir; //Maximum Information Rate - max posibil
 	
-	protected Set<NetworkAddress> networkAddress = new HashSet<NetworkAddress>();
+	private Set<NetworkAddress> networkAddress = new HashSet<NetworkAddress>();
 	
-	protected int filterPrio = 50;
-	protected int classPrio = 50;
+	private int filterPrio = 50;
+	private int classPrio = 50;
 	
 	
 	
