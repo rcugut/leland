@@ -7,7 +7,7 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -60,7 +60,7 @@ public final class ContractDocument
 		this.stopDate = stopDate;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@org.hibernate.annotations.IndexColumn(name="index", base=0)
 	public List<ContractChange> getContractChanges()
 	{

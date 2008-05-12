@@ -44,21 +44,19 @@
 
 		<property name="annotatedClasses">
 			<list>
-				<value>leland.domain.billing.client.ClientInvoice</value>
-				<value>leland.domain.billing.client.ClientInvoiceRow</value>
-				<value>leland.domain.billing.client.ClientPayment</value>
-				<value>leland.domain.services.OfferService</value>
-				<value>leland.domain.ContractGenericService</value>
-				<value>leland.domain.Location</value>
-				<value>leland.domain.services.InternetServiceDefinition</value>
-				<value>leland.domain.services.PerLocationServiceDefinition</value>
-				<value>leland.domain.services.ServiceDefinition</value>
-				<value>leland.domain.ContractBandwidthAllocation</value>
+				<value>leland.domain.billing.ClientInvoice</value>
+				<value>leland.domain.billing.ClientInvoiceRow</value>
+				<value>leland.domain.billing.ClientPayment</value>
 				<value>leland.domain.networking.NetworkAddress</value>
+				<value>leland.domain.networking.TechBandwidthAllocation</value>
 				<value>leland.domain.Address</value>
 				<value>leland.domain.Client</value>
 				<value>leland.domain.ContactPerson</value>
+				<value>leland.domain.ContractChange</value>
 				<value>leland.domain.ContractDocument</value>
+				<value>leland.domain.ContractGenericService</value>
+				<value>leland.domain.ContractInternetService</value>
+				<value>leland.domain.ContractLocationConnectionService</value>
 				<value>leland.domain.Location</value>
 			</list>
 		</property>
@@ -112,12 +110,11 @@
 	</bean>
 
 	<!--  Cron Tasks -->
-	
+<!-- 	
 	<bean id="scheduledTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
-    	<!-- wait 10 seconds before starting repeated execution -->		
 		<property name="delay" value="10000" />
-    	<!-- run once -->
     	<property name="period" value="0" />
 		<property name="timerTask" ref="monthlyBillingTask" />	
 	</bean>
+ -->
 </beans>

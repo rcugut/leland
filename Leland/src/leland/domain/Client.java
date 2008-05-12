@@ -17,9 +17,10 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import leland.domain.base.BaseEntity;
-import leland.domain.billing.client.ClientInvoice;
-import leland.domain.billing.client.ClientPayment;
+import leland.domain.billing.ClientInvoice;
+import leland.domain.billing.ClientPayment;
 import leland.domain.enums.ClientType;
+import leland.domain.networking.TechBandwidthAllocation;
 
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
@@ -40,6 +41,8 @@ public class Client
 	
 	private Set<ContactPerson> contactPersons = new HashSet<ContactPerson>();
 
+	private Set<Location> locations = new HashSet<Location>();
+	private Set<TechBandwidthAllocation> bandwidthAllocations = new HashSet<TechBandwidthAllocation>();
 	private List<ContractDocument> contractDocuments = new ArrayList<ContractDocument>();
 	private Set<ContractGenericService> contractedServices = new HashSet<ContractGenericService>();
 	
@@ -47,6 +50,18 @@ public class Client
 	private Set<ClientInvoice> invoices = new HashSet<ClientInvoice>(); 
 	private Set<ClientPayment> payments = new HashSet<ClientPayment>();
 
+	
+	public Client()
+	{
+		super();
+	}
+	
+	
+	public Client(ClientType clientType)
+	{
+		super();
+		this.type = clientType;
+	}
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////
@@ -162,8 +177,41 @@ public class Client
 		return this;
 	}
 	
+	
+	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	public Set<ContractGenericService> getContractedServices()
+	{
+		return this.contractedServices;
+	}
+	public void setContractedServices(Set<ContractGenericService> contractedServices)
+	{
+		this.contractedServices = contractedServices;
+	}
+	
+	
+	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	public Set<Location> getLocations()
+	{
+		return this.locations;
+	}
+	public void setLocations(Set<Location> location)
+	{
+		this.locations = location;
+	}
 
+	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	public Set<TechBandwidthAllocation> getBandwidthAllocations()
+	{
+		return this.bandwidthAllocations;
+	}
+	public void setBandwidthAllocations(Set<TechBandwidthAllocation> bandwidthAllocations)
+	{
+		this.bandwidthAllocations = bandwidthAllocations;
+	}
+	
+	
 
+	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	public Set<ClientInvoice> getInvoices()
 	{
 		return this.invoices;
@@ -173,6 +221,8 @@ public class Client
 		this.invoices = invoices;
 	}
 	
+	
+	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	public Set<ClientPayment> getPayments()
 	{
 		return this.payments;
@@ -180,14 +230,5 @@ public class Client
 	public void setPayments(Set<ClientPayment> payments)
 	{
 		this.payments = payments;
-	}
-	
-	public Set<ContractGenericService> getContractedServices()
-	{
-		return this.contractedServices;
-	}
-	public void setContractedServices(Set<ContractGenericService> contractedServices)
-	{
-		this.contractedServices = contractedServices;
 	}
 }

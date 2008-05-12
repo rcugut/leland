@@ -6,12 +6,14 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-import leland.domain.ContractBandwidthAllocation;
+import leland.domain.base.BaseEntity;
 
 @Entity
-public final class BandwidthAllocation
-		extends ContractBandwidthAllocation
+@Table(name="LND_BANDWIDTH_ALLOCATION")
+public class TechBandwidthAllocation
+		extends BaseEntity
 {
 	private int cir; //Committed Information Rate - min garantat
 	private int mir; //Maximum Information Rate - max posibil
@@ -20,6 +22,8 @@ public final class BandwidthAllocation
 	
 	private int filterPrio = 50;
 	private int classPrio = 50;
+	
+	
 	
 	
 	

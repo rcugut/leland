@@ -2,14 +2,16 @@ package leland.domain;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import leland.domain.base.BaseEntity;
 
 @Entity
+@Table(name="LND_CONTACT_PERSON")
 public final class ContactPerson
 		extends BaseEntity
 {
-//	private int typeBitMask; // [tech][financial][sales]
+	private int typeBitMask; // [tech][financial][sales]
 	private String fullName;
 	
 	private String phone;
@@ -78,5 +80,14 @@ public final class ContactPerson
 	public void setOtherInfo(String otherInfo)
 	{
 		this.otherInfo = otherInfo;
+	}
+	
+	public int getTypeBitMask()
+	{
+		return this.typeBitMask;
+	}
+	public void setTypeBitMask(int typeBitMask)
+	{
+		this.typeBitMask = typeBitMask;
 	}
 }

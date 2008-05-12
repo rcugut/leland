@@ -5,7 +5,7 @@ import java.util.List;
 
 import leland.dao.ClientManager;
 import leland.domain.Client;
-import leland.domain.billing.client.ClientInvoice;
+import leland.domain.billing.ClientInvoice;
 
 
 public class BillingEngine
