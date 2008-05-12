@@ -1,4 +1,4 @@
-package leland.domain.services;
+package leland.domain;
 
 import javax.persistence.Entity;
 

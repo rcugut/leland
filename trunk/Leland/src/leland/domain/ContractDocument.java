@@ -26,6 +26,8 @@ public final class ContractDocument
 
 	private List<ContractChange> contractChanges = new ArrayList<ContractChange>();
 	
+	private String otherNotes;
+	
 	
 	@Basic(optional=false)
 	public String getNumber()
@@ -67,5 +69,14 @@ public final class ContractDocument
 	public void setContractChanges(List<ContractChange> contractChanges)
 	{
 		this.contractChanges = contractChanges;
+	}
+
+	public String getOtherNotes()
+	{
+		return this.otherNotes;
+	}
+	public void setOtherNotes(String otherNotes)
+	{
+		this.otherNotes = otherNotes;
 	}
 }

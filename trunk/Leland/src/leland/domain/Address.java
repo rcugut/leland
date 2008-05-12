@@ -2,20 +2,31 @@ package leland.domain;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
-import leland.domain.base.BaseEntity;
+import leland.domain.base.EntityWithName;
 
 @Entity
+@Table(name="LND_ADDRESS")
 public final class Address
-		extends BaseEntity
+		extends EntityWithName
 {
 	private String street;
 	private String number;
-	private String otherInfo;
+	private String detailsOfStreetAddress;
 	private String city;
 	private String county; // judet
 	private String zip; // cod postal
+	private String otherInfo;
 
+	
+	public Address()
+	{
+		super();
+	}
+	
+	
+	
 	
 	@Basic(optional=false)
 	public String getStreet()
@@ -27,6 +38,7 @@ public final class Address
 		this.street = street;
 		return this;
 	}
+	
 	public String getNumber()
 	{
 		return this.number;
@@ -36,15 +48,17 @@ public final class Address
 		this.number = number;
 		return this;
 	}
-	public String getOtherInfo()
+	
+	public String getDetailsOfStreetAddress()
 	{
-		return this.otherInfo;
+		return this.detailsOfStreetAddress;
 	}
-	public Address setOtherInfo(String otherInfo)
+	public Address setDetailsOfStreetAddress(String otherInfo)
 	{
-		this.otherInfo = otherInfo;
+		this.detailsOfStreetAddress = otherInfo;
 		return this;
 	}
+	
 	public String getCity()
 	{
 		return this.city;
@@ -54,6 +68,7 @@ public final class Address
 		this.city = city;
 		return this;
 	}
+	
 	public String getCounty()
 	{
 		return this.county;
@@ -72,5 +87,14 @@ public final class Address
 	{
 		this.zip = zip;
 		return this;
+	}
+
+	public String getOtherInfo()
+	{
+		return this.otherInfo;
+	}
+	public void setOtherInfo(String otherInfo)
+	{
+		this.otherInfo = otherInfo;
 	}
 }
