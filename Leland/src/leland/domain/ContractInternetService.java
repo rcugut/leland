@@ -1,63 +1,99 @@
 package leland.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import leland.domain.enums.BillingMethod;
+import leland.domain.enums.ServiceType;
 
 @Entity
 @Table(name="LND_CONTRACT_SERVICE_INTERNET")
-@Inheritance(strategy=InheritanceType.JOINED)
 public class ContractInternetService
-		extends ContractGenericService
+		extends AbstractService
 {
-	private int cir; //Committed Information Rate - min garantat
-	private int mir; //Maximum Information Rate - max posibil
+	private int contractedTotalUploadCir; //Committed Information Rate - min garantat
+	private int contractedTotalUploadMir; //Maximum Information Rate - max posibil
 
-	private int nbOfNetworkAddresses = 1;
+	private int contractedTotalDownloadCir; //Committed Information Rate - min garantat
+	private int contractedTotalDownloadMir; //Maximum Information Rate - max posibil
+
+	
+	private int nbOfIpAddresses = 1;
 	
 	
 	
 	public ContractInternetService()
 	{
 		super();
+		this.billingMethod = BillingMethod.MONTHLY;
 	}
 	
 	public ContractInternetService(int cir, int mir, int nbOfNetworkAddresses)
 	{
-		super();
-		this.cir = cir;
-		this.mir = mir;
-		this.nbOfNetworkAddresses = nbOfNetworkAddresses;
+		this();
+		this.contractedTotalUploadCir = cir;
+		this.contractedTotalUploadMir = mir;
+		this.nbOfIpAddresses = nbOfNetworkAddresses;
 	}
 
 
 
 
 
-	public int getCir()
+	public int getContractedTotalUploadCir()
 	{
-		return this.cir;
+		return this.contractedTotalUploadCir;
 	}
-	public void setCir(int cir)
+	public ContractInternetService setContractedTotalUploadCir(int cir)
 	{
-		this.cir = cir;
-	}
-	public int getMir()
-	{
-		return this.mir;
-	}
-	public void setMir(int mir)
-	{
-		this.mir = mir;
+		this.contractedTotalUploadCir = cir;
+		return this;
 	}
 	
-	public int getNbOfNetworkAddresses()
+	public int getContractedTotalUploadMir()
 	{
-		return this.nbOfNetworkAddresses;
+		return this.contractedTotalUploadMir;
 	}
-	public void setNbOfNetworkAddresses(int nbOfNetworkAddresses)
+	public ContractInternetService setContractedTotalUploadMir(int mir)
 	{
-		this.nbOfNetworkAddresses = nbOfNetworkAddresses;
+		this.contractedTotalUploadMir = mir;
+		return this;
+	}
+	
+	public int getContractedTotalDownloadMir()
+	{
+		return this.contractedTotalDownloadMir;
+	}
+	public void setContractedTotalDownloadMir(int contractedTotalDownloadMir)
+	{
+		this.contractedTotalDownloadMir = contractedTotalDownloadMir;
+	}
+	
+	public int getContractedTotalDownloadCir()
+	{
+		return this.contractedTotalDownloadCir;
+	}
+	public void setContractedTotalDownloadCir(int contractedTotalDownloadCir)
+	{
+		this.contractedTotalDownloadCir = contractedTotalDownloadCir;
+	}
+
+	
+	public int getNbOfIpAddresses()
+	{
+		return this.nbOfIpAddresses;
+	}
+	public ContractInternetService setNbOfIpAddresses(int nbOfNetworkAddresses)
+	{
+		this.nbOfIpAddresses = nbOfNetworkAddresses;
+		return this;
+	}
+
+	@Override
+	@Transient
+	public ServiceType getServiceType()
+	{
+		return ServiceType.INTERNET;
 	}
 }

@@ -1,5 +1,6 @@
 package leland.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -25,7 +26,7 @@ public class ContractChange
 
 
 
-
+	@Column(length=50000)
 	public String getChangeDetails()
 	{
 		return this.changeDetails;

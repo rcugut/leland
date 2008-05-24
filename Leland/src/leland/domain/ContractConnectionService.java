@@ -8,21 +8,39 @@ import leland.domain.enums.BillingMethod;
 import leland.domain.enums.ServiceType;
 
 
+
 @Entity
-@Table(name="LND_CONTRACT_SERVICE_GENERIC")
-public class ContractGenericService
+@Table(name="LND_CONTRACT_SERVICE_CONNECTION")
+public class ContractConnectionService
 		extends AbstractService
 {
-	public ContractGenericService()
+	protected Address address;
+
+	
+	public ContractConnectionService()
 	{
 		super();
 		this.billingMethod = BillingMethod.ONE_TIME;
 	}
+	
+	
+	
+	public Address getAddress()
+	{
+		return this.address;
+	}
+	public ContractConnectionService setAddress(Address address)
+	{
+		this.address = address;
+		return this;
+	}
+
+
 
 	@Override
 	@Transient
 	public ServiceType getServiceType()
 	{
-		return ServiceType.GENERIC;
+		return ServiceType.CONNECTION;
 	}
 }

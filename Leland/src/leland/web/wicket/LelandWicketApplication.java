@@ -1,6 +1,6 @@
 package leland.web.wicket;
 
-import leland.web.wicket.contracts.NewClientPage;
+import leland.web.wicket.contract.NewClientPage;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.authentication.AuthenticatedWebApplication;
