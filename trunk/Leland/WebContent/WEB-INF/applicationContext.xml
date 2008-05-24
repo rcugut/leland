@@ -47,8 +47,9 @@
 				<value>leland.domain.billing.ClientInvoice</value>
 				<value>leland.domain.billing.ClientInvoiceRow</value>
 				<value>leland.domain.billing.ClientPayment</value>
+				<value>leland.domain.networking.Location</value>
 				<value>leland.domain.networking.NetworkAddress</value>
-				<value>leland.domain.networking.TechBandwidthAllocation</value>
+				<value>leland.domain.networking.BandwidthAllocation</value>
 				<value>leland.domain.Address</value>
 				<value>leland.domain.Client</value>
 				<value>leland.domain.ContactPerson</value>
@@ -56,8 +57,7 @@
 				<value>leland.domain.ContractDocument</value>
 				<value>leland.domain.ContractGenericService</value>
 				<value>leland.domain.ContractInternetService</value>
-				<value>leland.domain.ContractLocationConnectionService</value>
-				<value>leland.domain.Location</value>
+				<value>leland.domain.ContractConnectionService</value>
 			</list>
 		</property>
 	</bean>
