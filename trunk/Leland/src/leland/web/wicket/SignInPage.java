@@ -29,10 +29,10 @@ public class SignInPage
 	 * @author Radu CUGUT
 	 */
 	private class SignInPanel
-			extends Panel
+			extends Panel<Object>
 	{
 		private PasswordTextField password;
-		private TextField username;
+		private TextField<String> username;
 
 		public SignInPanel(String id)
 		{
@@ -109,7 +109,7 @@ public class SignInPage
 		 * Sign in form.
 		 */
 		public final class SignInForm
-				extends Form
+				extends Form<Object>
 		{
 			private final ValueMap properties = new ValueMap();
 
@@ -128,8 +128,8 @@ public class SignInPage
 				
 				// Attach textfield components that edit properties map
 				// in lieu of a formal beans model
-				this.add(username = new TextField("input-username", new PropertyModel(properties, "username")));
-				this.add(password = new PasswordTextField("input-password", new PropertyModel(properties, "password")));
+				this.add(username = new TextField<String>("input-username", new PropertyModel<String>(properties, "username")));
+				this.add(password = new PasswordTextField("input-password", new PropertyModel<String>(properties, "password")));
 			}
 
 			@Override

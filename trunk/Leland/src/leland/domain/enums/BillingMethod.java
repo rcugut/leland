@@ -4,11 +4,11 @@ package leland.domain.enums;
  * 
  * @author Radu CUGUT
  */
-public enum BillingScheduleType
+public enum BillingMethod
 {
 	ONE_TIME(10),
-	DAILY(20),
-	WEEKLY(30),
+//	DAILY(20),
+//	WEEKLY(30),
 	MONTHLY(40),
 	YEARLY(50);
 
@@ -16,7 +16,7 @@ public enum BillingScheduleType
 	
 	private int value;
 
-	BillingScheduleType(int value)
+	BillingMethod(int value)
 	{
 		this.value = value;
 	}
@@ -28,16 +28,16 @@ public enum BillingScheduleType
 	}
 
 	// the valueOfMethod
-	public static BillingScheduleType fromInt(int value)
+	public static BillingMethod fromInt(int value)
 	{
 		switch (value)
 		{
 			default:
 				return ONE_TIME;
-			case 20:
-				return DAILY;
-			case 30:
-				return WEEKLY;
+//			case 20:
+//				return DAILY;
+//			case 30:
+//				return WEEKLY;
 			case 40:
 				return MONTHLY;
 			case 50:
@@ -51,15 +51,15 @@ public enum BillingScheduleType
 		switch (this)
 		{
 			default:
-				return "O singura data";
-			case DAILY:
-				return "Zilnic";
-			case WEEKLY:
-				return "Saptamanal";
+				return "Manual";
+//			case DAILY:
+//				return "Automat - zilnic";
+//			case WEEKLY:
+//				return "Automat - saptamanal";
 			case MONTHLY:
-				return "Lunar";
+				return "Automat - lunar";
 			case YEARLY:
-				return "Anual";
+				return "Automat - anual";
 		}
 	}
 }

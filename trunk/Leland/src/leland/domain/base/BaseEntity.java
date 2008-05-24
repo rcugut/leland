@@ -14,8 +14,9 @@ import javax.persistence.TemporalType;
 
 
 @MappedSuperclass
-public class BaseEntity
-		implements Serializable
+public abstract class BaseEntity
+		implements Serializable, Comparable<BaseEntity>
+		
 {
 	protected int id;
 	protected Date dateCreated = Calendar.getInstance().getTime();
@@ -70,5 +71,20 @@ public class BaseEntity
 	public void setActive(boolean active)
 	{
 		this.active = active;
+	}
+
+
+	@Override
+	public int compareTo(BaseEntity o)
+	{
+		try
+		{
+			return this.dateCreated.compareTo(o.dateCreated);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return 0;
+		}
 	}
 }

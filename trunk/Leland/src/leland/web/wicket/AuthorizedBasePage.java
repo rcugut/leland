@@ -14,7 +14,7 @@ public abstract class AuthorizedBasePage
 	{
 		super(parameters);
 		
-		this.add(new Label("label-inSitePosition", getInSitePositionString()));
+		this.add(new Label<String>("label-inSitePosition", getInSitePositionString()));
 	}
 	
 	protected abstract String getInSitePositionString();

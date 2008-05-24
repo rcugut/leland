@@ -3,8 +3,11 @@ package leland.domain;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import leland.domain.base.EntityWithName;
+
+import org.apache.wicket.util.string.Strings;
 
 @Entity
 @Table(name="LND_ADDRESS")
@@ -26,6 +29,18 @@ public final class Address
 	}
 	
 	
+	@Transient
+	public String getAddresForDisplay()
+	{
+		return this.street +
+		(Strings.isEmpty(this.number) ? "" : ", nr. " + this.number) +
+		(Strings.isEmpty(this.detailsOfStreetAddress) ? "" : ", " + this.detailsOfStreetAddress) +
+		(Strings.isEmpty(this.city) ? "" : ", " + this.city) +
+		(Strings.isEmpty(this.county) ? "" : ", " + this.county) +
+		(Strings.isEmpty(this.zip) ? "" : ", " + this.zip) +
+		(Strings.isEmpty(this.otherInfo) ? "" : " (" + this.otherInfo + ")");
+	}
+	
 	
 	
 	@Basic(optional=false)
@@ -39,6 +54,7 @@ public final class Address
 		return this;
 	}
 	
+	@Basic(optional=false)
 	public String getNumber()
 	{
 		return this.number;
@@ -59,6 +75,7 @@ public final class Address
 		return this;
 	}
 	
+	@Basic(optional=false)
 	public String getCity()
 	{
 		return this.city;
@@ -69,6 +86,7 @@ public final class Address
 		return this;
 	}
 	
+	@Basic(optional=false)
 	public String getCounty()
 	{
 		return this.county;

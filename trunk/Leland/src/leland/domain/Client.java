@@ -1,6 +1,7 @@
 package leland.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -20,7 +22,8 @@ import leland.domain.base.BaseEntity;
 import leland.domain.billing.ClientInvoice;
 import leland.domain.billing.ClientPayment;
 import leland.domain.enums.ClientType;
-import leland.domain.networking.TechBandwidthAllocation;
+import leland.domain.networking.BandwidthAllocation;
+import leland.domain.networking.Location;
 
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
@@ -41,12 +44,18 @@ public class Client
 	
 	private Set<ContactPerson> contactPersons = new HashSet<ContactPerson>();
 
+	// tech
 	private Set<Location> locations = new HashSet<Location>();
-	private Set<TechBandwidthAllocation> bandwidthAllocations = new HashSet<TechBandwidthAllocation>();
-	private List<ContractDocument> contractDocuments = new ArrayList<ContractDocument>();
-	private Set<ContractGenericService> contractedServices = new HashSet<ContractGenericService>();
+	private Set<BandwidthAllocation> bandwidthAllocations = new HashSet<BandwidthAllocation>();
 	
-
+	// contract
+	private List<ContractDocument> contractDocuments = new ArrayList<ContractDocument>();
+	
+	private Set<ContractGenericService> contractedGenericServices = new HashSet<ContractGenericService>();
+	private Set<ContractConnectionService> contractedConnectionServices = new HashSet<ContractConnectionService>();
+	private ContractInternetService contractedInternetService;
+	
+	// billing
 	private Set<ClientInvoice> invoices = new HashSet<ClientInvoice>(); 
 	private Set<ClientPayment> payments = new HashSet<ClientPayment>();
 
@@ -64,6 +73,42 @@ public class Client
 	}
 
 
+	////////////////////////////////////////////////////////////////////////////////////////////
+
+	public void addService(AbstractService service)
+	{
+		if(service instanceof ContractGenericService)
+		{
+			this.getContractedGenericServices().add((ContractGenericService)service);
+		}
+		else if(service instanceof ContractConnectionService)
+		{
+			this.getContractedConnectionServices().add((ContractConnectionService)service);
+		}
+		else// if(service instanceof ContractInternetService)
+		{
+			this.contractedInternetService = (ContractInternetService)service;
+		}
+	}
+
+	public void removeService(AbstractService service)
+	{
+		if(service instanceof ContractGenericService)
+		{
+			this.getContractedGenericServices().remove((ContractGenericService)service);
+		}
+		else if(service instanceof ContractConnectionService)
+		{
+			this.getContractedConnectionServices().remove((ContractConnectionService)service);
+		}
+		else// if(service instanceof ContractInternetService)
+		{
+			this.contractedInternetService = null;
+		}
+	}
+	
+	
+	
 	////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -178,15 +223,64 @@ public class Client
 	}
 	
 	
+	
+	// CONTRACT
+
+	@Transient
+	public List<AbstractService> getAllServicesAsList()
+	{
+		final List<AbstractService> list = new ArrayList<AbstractService>(this.contractedGenericServices);
+		list.addAll(this.contractedConnectionServices);
+		if(this.contractedInternetService != null)
+			list.add(this.contractedInternetService);
+		
+		Collections.sort(list);
+		return list;
+	}
+
+	
+
 	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-	public Set<ContractGenericService> getContractedServices()
+	public Set<ContractGenericService> getContractedGenericServices()
 	{
-		return this.contractedServices;
+		return this.contractedGenericServices;
 	}
-	public void setContractedServices(Set<ContractGenericService> contractedServices)
+	public Client setContractedGenericServices(Set<ContractGenericService> contractedGenericServices)
 	{
-		this.contractedServices = contractedServices;
+		this.contractedGenericServices = contractedGenericServices;
+		return this;
 	}
+	
+	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	public Set<ContractConnectionService> getContractedConnectionServices()
+	{
+		return this.contractedConnectionServices;
+	}
+	public Client setContractedConnectionServices(Set<ContractConnectionService> contractedConnectionServices)
+	{
+		this.contractedConnectionServices = contractedConnectionServices;
+		return this;
+	}
+	
+	
+
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, optional=true)
+	public ContractInternetService getContractedInternetService()
+	{
+		return this.contractedInternetService;
+	}
+	public Client setContractedInternetService(ContractInternetService contractedInternetService)
+	{
+		this.contractedInternetService = contractedInternetService;
+		return this;
+	}
+
+	
+	
+	
+	
+	
+	// TECH
 	
 	
 	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
@@ -200,16 +294,20 @@ public class Client
 	}
 
 	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-	public Set<TechBandwidthAllocation> getBandwidthAllocations()
+	public Set<BandwidthAllocation> getBandwidthAllocations()
 	{
 		return this.bandwidthAllocations;
 	}
-	public void setBandwidthAllocations(Set<TechBandwidthAllocation> bandwidthAllocations)
+	public void setBandwidthAllocations(Set<BandwidthAllocation> bandwidthAllocations)
 	{
 		this.bandwidthAllocations = bandwidthAllocations;
 	}
 	
 	
+	
+	
+	
+	// BILLING
 
 	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	public Set<ClientInvoice> getInvoices()

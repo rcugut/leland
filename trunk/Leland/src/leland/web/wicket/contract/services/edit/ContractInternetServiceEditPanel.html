@@ -1,0 +1,37 @@
+<html xmlns:wicket>
+<wicket:extend>
+
+
+<table cellpadding="2" cellspacing="2" border="0">
+  <tr>
+    <td>
+    	<fieldset>
+    		<legend>Total Upload</legend>
+    		<span class="req">min garantat</span> <input wicket:id="input-ulCir" type="text" maxlength="14" style="width:50px" />kbps
+    		&nbsp;&nbsp;&nbsp;&nbsp;
+    		<span class="req">max</span> <input wicket:id="input-ulMir" type="text" maxlength="14" style="width:50px" />kbps
+		</fieldset>
+    	<fieldset>
+    		<legend>Total Download</legend>
+    		<span class="req">min garantat</span> <input wicket:id="input-dlCir" type="text" maxlength="14" style="width:50px" />kbps
+    		&nbsp;&nbsp;&nbsp;&nbsp;
+    		<span class="req">max</span> <input wicket:id="input-dlMir" type="text" maxlength="14" style="width:50px" />kbps
+    	</fieldset>
+    	
+    	<div style="padding-top: 4px">
+    	<span class="req">Total adrese IP</span> <input wicket:id="input-nbOfIpAddresses" type="text" maxlength="4" style="width:50px" />
+    	</div>
+	</td>
+  </tr>
+  <tr>
+  	<td>Alte detalii<br />
+		<textarea wicket:id="input-serviceDetails" rows="2" style="width:99%"></textarea>  	
+  	</td>
+  </tr>
+</table>
+
+	
+
+</wicket:extend>
+</html>
+  

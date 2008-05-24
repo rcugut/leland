@@ -1,0 +1,32 @@
+<html xmlns:wicket>
+<wicket:panel>
+
+<div class="panel">
+
+<div class="title"><span wicket:id="label-typeName"></span></div>
+
+<div wicket:id="panel-feedback" class="feedbackPanel"></div>
+
+<div class="content">
+
+<table cellpadding="2" cellspacing="2" border="0">
+	<tr>
+		<td class="req">Facturare</td>
+		<td><select wicket:id="input-billingMethod"></select></td>
+	</tr>
+	<tr>
+		<td class="req">Pret</td>
+		<td><input wicket:id="input-servicePrice" type="text" /></td>
+	</tr>
+</table>
+
+<wicket:child />
+
+
+</div>
+
+
+</div>
+
+</wicket:panel>
+</html>

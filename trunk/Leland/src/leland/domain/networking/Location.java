@@ -1,4 +1,4 @@
-package leland.domain;
+package leland.domain.networking;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,16 +9,19 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import leland.domain.base.BaseEntity;
-import leland.domain.networking.NetworkAddress;
+import leland.domain.Address;
+import leland.domain.base.EntityWithName;
 
 @Entity
 @Table(name="LND_LOCATION")
-public class Location
-		extends BaseEntity
+public final class Location
+		extends EntityWithName
 {
-	protected Address address;
-	protected Set<NetworkAddress> networkAddresses = new HashSet<NetworkAddress>();
+	private Address address;
+	private Set<NetworkAddress> networkAddresses = new HashSet<NetworkAddress>();
+	
+	
+	
 	
 	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	public Address getAddress()

@@ -12,7 +12,7 @@ import leland.domain.base.BaseEntity;
 
 @Entity
 @Table(name="LND_BANDWIDTH_ALLOCATION")
-public class TechBandwidthAllocation
+public class BandwidthAllocation
 		extends BaseEntity
 {
 	private int cir; //Committed Information Rate - min garantat

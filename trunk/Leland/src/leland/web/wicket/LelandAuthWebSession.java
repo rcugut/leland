@@ -1,7 +1,6 @@
 package leland.web.wicket;
 
 import org.apache.wicket.Request;
-import org.apache.wicket.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authorization.strategies.role.Roles;
 
@@ -14,13 +13,13 @@ import org.apache.wicket.authorization.strategies.role.Roles;
 public class LelandAuthWebSession
 		extends AuthenticatedWebSession
 {
-	public LelandAuthWebSession(AuthenticatedWebApplication application, Request request)
+	public LelandAuthWebSession(Request request)
 	{
 		super(request);
 	}
 
 	@Override
-	public boolean authenticate(String arg0, String arg1)
+	public boolean authenticate(String username, String password)
 	{
 		return true;
 	}

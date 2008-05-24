@@ -4,7 +4,7 @@ import javax.persistence.MappedSuperclass;
 
 
 @MappedSuperclass
-public class EntityWithName
+public abstract class EntityWithName
 		extends BaseEntity
 {
 	protected String name;

@@ -1,0 +1,74 @@
+<html xmlns:wicket>
+<head>
+</head>
+<wicket:extend>
+<form wicket:id="form-newClient">
+
+
+<div class="panel" style="float:left;">
+	<div class="title">Date client</div>
+	<div class="content" style="float:left">
+
+		<div class="field">
+			<div class="label req">Tip client</div>
+			<div class="input"><select wicket:id="select-clientType"></select></div>
+		</div>
+	
+		<div class="field">
+			<div class="label req">Nume</div>
+			<div class="input"><input wicket:id="input-clientName" type="text" style="width: 300px" /></div>
+		</div>
+	
+		<div class="field">
+			<div class="label req"><span wicket:id="label-clientPersonalNumberType">CNP/CUI</span></div>
+			<div class="input"><input wicket:id="input-clientPersonalNumber" type="text" style="width: 120px" /></div>
+		</div>
+	
+		<div class="field">
+			<div class="label req"><span wicket:id="label-clientRegNumberType">CI/NrInregComer</span></div>
+			<div class="input"><input wicket:id="input-clientRegNumber" type="text" /></div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+<div class="panel" style="float:left; margin-left: 10px">
+	<div class="title">Date contract</div>
+	<div class="content" style="float: left">
+	
+		<div class="field">
+			<div class="label req">Nr contract</div>
+			<div class="input"><input id="input-contractNumber" type="text" /></div>
+		</div>
+			
+		<div class="field">
+			<div class="label req">Data semnarii</div>
+			<div class="input"><input id="input-contractSignDate" type="text" /></div>
+		</div>
+		
+		<div class="field">
+			<div class="label req">Data incheierii</div>
+			<div class="input"><input id="input-contractEndDate" type="text" /></div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+<div class="panel" style="clear: both; width: 800px">
+<div class="title">Servicii</div>
+<div class="content"><div wicket:id="panel-servicesEditList"></div></div>
+</div>
+
+
+
+<br />
+
+<input type="submit" value="Submit" style="padding: 4px 10px; cursor: pointer" />
+
+</form>
+</wicket:extend>
+</html>
