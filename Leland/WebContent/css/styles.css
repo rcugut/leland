@@ -6,43 +6,96 @@ input[type=submit] {
 	font-weight: bold;
 }
 
-
-fieldset {
-	border: 1px solid #ccc;
-	/*
-	border-left: none;
-	border-bottom: none;
-	border-right: none;
-	*/
-}
-
-legend {
-	border: 1px solid #ccc;
-	padding: 2px 10px;
+image {
+	border: 0;
 }
 
 
-div.form {
-	width: 500px;
-}
 
-div.form table.formField {
-	background: #dee;
-	margin: 2px 0;
-	width: 100%
-}
+/* ---------------------------------------------------------- */
 
-div.form table.formField td.fieldLabel {
-	width: 120px;
-	text-align: right;
-	font-size: smaller;
+div.wicket-aa {
+	font-family: sans-serif;
+	font-size: 12px;
+	color: #000;
+	background-color: #ffd;
+	border: 1px solid #999;
+	padding: 2px;
+	margin: 1px 0 0 0;
+	text-align:left;
 }
-
-div.form table.formField td.req {
+div.wicket-aa ul {
+	list-style:none;
+	padding: 2px;
+	margin:0;
+}
+div.wicket-aa ul li {
+	padding: 2px;
+	margin:0;
+	cursor: pointer;
+}
+div.wicket-aa ul li.selected {
+	background-color: #eff;
 	font-weight: bold;
 }
 
+div.feedbackPanel {
+	
+}
 
-div.form table.formField td.fieldInput {
-	text-align: left;
-} 
+
+/* ---------------------------------------------------------- */
+
+div.panel {
+	padding: 0;
+	margin: 2px;
+	border: 1px solid #89d;
+}
+
+div.panel div.title {
+	color: #fff;
+	background: #89d;
+	font-size: 18px;
+	padding: 2px;
+}
+
+div.panel div.content {
+	padding: 2px;
+	font-size: 12px;
+}
+
+div.panel div.smallerTitle {
+	color: #fff;
+	background: #89d;
+	font-size: 16px;
+}
+
+/* ---------------------------------------------------------- */
+
+div.field {
+	float: left;
+	clear: both;
+	margin: 2px;
+}
+
+div.field div.label {
+	float: left;
+	width: 110px;
+	text-align: right;
+	padding-right: 4px;
+	padding-top: 2px; 
+}
+
+div.field div.input {
+	float: left;
+}
+
+.req {
+	font-weight: bold;
+}
+
+input.error {
+	background: #fee;
+	border: 1px solid #933;
+}
+ 
