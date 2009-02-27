@@ -222,6 +222,13 @@ public class Client
 		return this;
 	}
 	
+
+	@Transient
+	public ContractDocument getLastContractDocument()
+	{
+		return this.contractDocuments.size()>0 ? this.contractDocuments.get(this.contractDocuments.size()-1) : null; 
+	}
+	
 	
 	
 	// CONTRACT
@@ -233,7 +240,13 @@ public class Client
 		list.addAll(this.contractedConnectionServices);
 		if(this.contractedInternetService != null)
 			list.add(this.contractedInternetService);
-		
+		return list;
+	}
+
+	@Transient
+	public List<AbstractService> getAllServicesAsSortedList()
+	{
+		final List<AbstractService> list = this.getAllServicesAsList();
 		Collections.sort(list);
 		return list;
 	}

@@ -7,7 +7,7 @@ import leland.domain.base.BaseEntity;
 
 import org.hibernate.criterion.DetachedCriteria;
 
-public interface LelandDao
+public interface BaseDao
 {
 
 	public <T extends BaseEntity> T get(final Class<T> clazz, final Serializable id);
@@ -20,6 +20,9 @@ public interface LelandDao
 
 	public <T extends BaseEntity> List<T> getByCriteria(final DetachedCriteria dc);
 
+	
+	public void persist(final BaseEntity entity);
+	
 	public void save(final BaseEntity entity);
 
 	public void delete(final BaseEntity entity);

@@ -1,6 +1,5 @@
 package leland.web.wicket.contract.services;
 
-import java.util.Arrays;
 import java.util.List;
 
 import leland.domain.AbstractService;
@@ -19,7 +18,6 @@ import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.IFormVisitorParticipant;
@@ -39,7 +37,7 @@ public final class ContractServiceListEditPanel
 	private final ModalWindow modalWindowEditService = new ModalWindow("modalwindow-editService");
 	private boolean modalWindowOkButtonPressed = false;
 	private ServiceType serviceTypeToAdd = ServiceType.CONNECTION;
-	private final WebMarkupContainer containerServicesList;
+	private final WebMarkupContainer<Object> containerServicesList;
 	
 	@SuppressWarnings("unchecked")
 	public ContractServiceListEditPanel(String id, IModel<Client> model, Form form)
@@ -75,25 +73,31 @@ public final class ContractServiceListEditPanel
 		};
 		this.containerServicesList.add(listServices);
 
-
-
 		
-		final DropDownChoice<ServiceType> choiceDesigners = new DropDownChoice<ServiceType>("input-serviceType",
-				new PropertyModel<ServiceType>(this, "serviceTypeToAdd"), Arrays.asList(ServiceType.values()));
-		this.add(choiceDesigners);
 		
-		this.add(new AjaxButton<Object>("input-addService")
-		{
-			@Override
-			protected void onSubmit(AjaxRequestTarget target, Form form)
-			{
-				final AbstractService service;
-				switch(serviceTypeToAdd)
+		this.add(new AjaxLink<Object>("input-addGenericService")
 				{
-					case GENERIC: 		service = new ContractGenericService(); break;
-					case CONNECTION:	service = new ContractConnectionService().setAddress(new Address()); break;
-					default:
-					case INTERNET:		
+					@Override
+					public void onClick(AjaxRequestTarget target)
+					{
+						final AbstractService service = new ContractGenericService();
+						showAddServiceModalWindow(target, service);
+					}
+				});
+		this.add(new AjaxLink<Object>("input-addConnectionService")
+				{
+					@Override
+					public void onClick(AjaxRequestTarget target)
+					{
+						final AbstractService service = new ContractConnectionService().setAddress(new Address());
+						showAddServiceModalWindow(target, service);
+					}
+				});
+		this.add(new AjaxLink<Object>("input-addInternetService")
+				{
+					@Override
+					public void onClick(AjaxRequestTarget target)
+					{
 						if(client.getContractedConnectionServices().size() == 0)
 						{
 							target.appendJavascript("alert('Atentie: Nu am gasit nici o locatie pentru clientul curent.\\nTrebuie sa adaugati cel putin un serviciu de conectare pantru a putea adauga serviciu Internet.')");
@@ -104,36 +108,35 @@ public final class ContractServiceListEditPanel
 							target.appendJavascript("alert('Exista deja un serviciu Internet. Nu poate fi adaugat mai mult de un astfel de serviciu. Pentru a aduce modificari, editati-l pe cel existent.')");
 							return;
 						}
-						
-						service = new ContractInternetService();
-						
-						break;
-				}
-
-				
-				modalWindowEditService.setTitle("Adaugare serviciu");
-				modalWindowEditService.setContent(new ServiceEditPanel(modalWindowEditService.getContentId(), service));
-
-				modalWindowEditService.setWindowClosedCallback(new ModalWindow.WindowClosedCallback()
-				{
-					public void onClose(AjaxRequestTarget target)
-					{
-						if(modalWindowOkButtonPressed)
-						{
-							client.addService(service);
-							target.addComponent(containerServicesList);
-						}
+						final AbstractService service = new ContractInternetService();
+						showAddServiceModalWindow(target, service);
 					}
 				});
+	}//constructor
+	
+	
+	
+	
+	
+	public void showAddServiceModalWindow(final AjaxRequestTarget target, final AbstractService service)
+	{
+		modalWindowEditService.setTitle("Adaugare serviciu");
+		modalWindowEditService.setContent(new ServiceEditPanel(modalWindowEditService.getContentId(), service));
 
-				modalWindowEditService.show(target);
-				
-
-			}//onSubmit
-		});//AjaxButton		
+		modalWindowEditService.setWindowClosedCallback(new ModalWindow.WindowClosedCallback()
+		{
+			public void onClose(AjaxRequestTarget target)
+			{
+				if(modalWindowOkButtonPressed)
+				{
+					client.addService(service);
+					target.addComponent(containerServicesList);
+				}
+			}
+		});
+		modalWindowEditService.show(target);		
 	}
-	
-	
+
 	
 	
 	public ServiceType getServiceTypeToAdd()

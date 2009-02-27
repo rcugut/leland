@@ -1,0 +1,73 @@
+<html xmlns:wicket>
+<wicket:head>
+<script>
+LND.ClientsList = {};
+LND.ClientsList.onTrMouseOver = function(trObj)
+{
+	$(trObj).addClassName('mouseOver');
+}
+LND.ClientsList.onTrMouseOut = function(trObj)
+{
+	$(trObj).removeClassName('mouseOver');
+}
+</script>
+</wicket:head>
+
+
+<wicket:extend>
+
+<a wicket:id="link-contracts.NewClientPage">Adauga client</a>
+
+
+
+<form wicket:id="form-searchClients">
+<table border="0" cellpadding="2" cellspacing="2">
+	<tr>
+		<td>
+			Nume: <input wicket:id="input-clientName" type="text" value="" style="width: 250px">
+			&nbsp;&nbsp;
+			Contract: <input wicket:id="input-contractNumber" type="text" value="" style="width: 100px">
+			&nbsp;&nbsp;
+			<input wicket:id="input-submit" type="submit" value="Cauta">
+		</td>
+	</tr>            
+</table>
+</form>
+
+
+<div wicket:id="container-searchResults">
+	<div wicket:id="label-searchResultsText"></div>
+	<div wicket:id="container-clientsList">
+		<table cellspacing="2" cellpadding="2" border="0" class="table-searchResults">
+			<thead>
+				<tr>
+					<td>#ID</td>
+					<td>Tip</td>
+					<td>Nume</td>
+					<td>CNP/CUI</td>
+					<td>Contract</td>
+					<td>Data semnarii</td>
+				</tr>
+			</thead>  	
+	
+			<tbody>
+				<tr wicket:id="row-client" 
+					onmouseover="LND.ClientsList.onTrMouseOver(this)"
+					onmouseout="LND.ClientsList.onTrMouseOut(this)">
+					<td><a wicket:id="link-client"><span wicket:id="label-clientId"></span></a></td>
+					<td><span wicket:id="label-clientType"></span></td>
+					<td><span wicket:id="label-clientName"></span></td>
+					<td><span wicket:id="label-clientPin"></span></td>
+					<td><span wicket:id="label-contractNumber"></span></td>
+					<td><span wicket:id="label-contractStartDate"></span></td>
+				</tr>
+			</tbody>  	
+		</table>
+	  
+		<div wicket:id="navigator-clientsList" class="page-navigator"></div>
+	</div>
+</div>
+
+
+</wicket:extend>
+</html>

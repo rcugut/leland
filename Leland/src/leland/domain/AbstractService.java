@@ -1,7 +1,10 @@
 package leland.domain;
 
 import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import leland.domain.base.BaseEntity;
@@ -11,15 +14,15 @@ import leland.domain.enums.ServiceType;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy=InheritanceType.JOINED)
+@Table(name="LND_CONTRACT_SERVICE")
 public abstract class AbstractService
 		extends BaseEntity
 {
 	protected BillingMethod billingMethod = BillingMethod.ONE_TIME;
 	protected double contractedPrice;
 	protected String details;
-
-	
 	
 	
 	public AbstractService()

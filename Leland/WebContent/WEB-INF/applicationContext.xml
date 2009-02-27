@@ -69,17 +69,11 @@
 	</bean>
 
 
-	<bean id="hibernateDaoTarget" class="leland.dao.LelandDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
-
-
-	<bean id="lelandDao" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager"	ref="hibernateTransactionManager" />
-		<property name="target" ref="hibernateDaoTarget" />
+	<bean id="baseTransactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" abstract="true">
+		<property name="transactionManager" ref="hibernateTransactionManager" />
 		<property name="transactionAttributes">
 			<props>
+				<prop key="persist*">PROPAGATION_REQUIRED</prop>
 				<prop key="save*">PROPAGATION_REQUIRED</prop>
 				<prop key="delete*">PROPAGATION_REQUIRED</prop>
 				<prop key="flush*">PROPAGATION_REQUIRED</prop>
@@ -89,8 +83,31 @@
 	</bean>
 
 
+	<bean id="baseDaoTarget" class="leland.dao.BaseDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="baseDao" parent="baseTransactionProxy">
+		<property name="target" ref="baseDaoTarget" />
+	</bean>
+
+
+	<bean id="billingDaoTarget" class="leland.dao.BillingDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="billingDao" parent="baseTransactionProxy">
+		<property name="target" ref="billingDaoTarget" />
+	</bean>
+
+
+
+
+
 	<bean id="clientManager" class="leland.dao.ClientManager">
-		<property name="dao" ref="lelandDao" />
+		<property name="dao" ref="baseDao" />
+	</bean>
+	
+	<bean id="billingManager" class="leland.dao.BillingManager">
+		<property name="dao" ref="billingDao" />
 	</bean>
 
 
@@ -98,7 +115,6 @@
 
 	<!-- setup wicket application -->
 	<bean id="wicketApplication" class="leland.web.wicket.LelandWicketApplication">
-<!-- 		<property name="userManager" ref="" /> -->
 	</bean>
 
 

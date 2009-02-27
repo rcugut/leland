@@ -2,6 +2,11 @@
 <head>
 </head>
 <wicket:extend>
+
+<br />
+
+Adaugare client
+
 <form wicket:id="form-newClient">
 
 
@@ -40,25 +45,24 @@
 	
 		<div class="field">
 			<div class="label req">Nr contract</div>
-			<div class="input"><input id="input-contractNumber" type="text" /></div>
+			<div class="input"><input wicket:id="input-contractNumber" type="text" /></div>
 		</div>
 			
 		<div class="field">
 			<div class="label req">Data semnarii</div>
-			<div class="input"><input id="input-contractSignDate" type="text" /></div>
+			<div class="input"><input wicket:id="input-contractSignDate" type="text" style="width: 80px" readonly="readonly"/></div>
 		</div>
 		
 		<div class="field">
 			<div class="label req">Data incheierii</div>
-			<div class="input"><input id="input-contractEndDate" type="text" /></div>
+			<div class="input"><input wicket:id="input-contractEndDate" type="text" style="width: 80px" readonly="readonly"/></div>
 		</div>
-		
 	</div>
 </div>
 
 
 
-<div class="panel" style="clear: both; width: 800px">
+<div class="panel" style="clear: both; width: 720px">
 <div class="title">Servicii</div>
 <div class="content"><div wicket:id="panel-servicesEditList"></div></div>
 </div>
@@ -66,6 +70,8 @@
 
 
 <br />
+<div wicket:id="feedback" style="margin-bottom: 6px"></div>
+
 
 <input type="submit" value="Submit" style="padding: 4px 10px; cursor: pointer" />
 

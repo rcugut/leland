@@ -21,7 +21,7 @@ public abstract class AbstractContractServiceViewPanel<T extends AbstractService
 		this.service = model.getObject();
 		
 		this.add(new Label<String>("label-dateCreated", StringUtil.formatDateLongDMY(this.service.getDateCreated())));
-		this.add(new Label<String>("label-dateUpdated", StringUtil.formatDateLongDMYHM(this.service.getDateUpdated())));
+//		this.add(new Label<String>("label-dateUpdated", StringUtil.formatDateLongDMYHM(this.service.getDateUpdated())));
 		this.add(new Label<String>("label-price", StringUtil.formatMoney(this.service.getContractedPrice())));
 		this.add(new Label<String>("label-billingMethod", "("+ this.service.getBillingMethod().toString()+ ")" ));
 	}

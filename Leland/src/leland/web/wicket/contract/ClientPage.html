@@ -1,0 +1,108 @@
+<html xmlns:wicket>
+<head>
+</head>
+<wicket:extend>
+
+<div class="panel" style="float:left;">
+	<div class="title">Date client</div>
+	<div class="content" style="float:left">
+
+		<div class="field">
+			<div class="label req">Tip client</div>
+			<div class="input"><span wicket:id="label-clientType"></span></div>
+		</div>
+	
+		<div class="field">
+			<div class="label req">Nume</div>
+			<div class="input"><span wicket:id="label-clientName"></span></div>
+		</div>
+	
+		<div class="field">
+			<div class="label req"><span wicket:id="label-clientPersonalNumberType">CNP/CUI</span></div>
+			<div class="input"><span wicket:id="label-clientPersonalNumber"></span></div>
+		</div>
+	
+		<div class="field">
+			<div class="label req"><span wicket:id="label-clientRegNumberType">CI/NrInregComer</span></div>
+			<div class="input"><span wicket:id="label-clientRegNumber"></span></div>
+		</div>
+		
+	</div>
+</div>
+
+
+<div class="panel" style="float:left; margin-left: 10px">
+	<div class="title">Date contract</div>
+	<div class="content" style="float: left">
+	
+		<div class="field">
+			<div class="label">Nr contract:</div>
+			<div class="input"><span wicket:id="label-contractNumber"></span></div>
+		</div>
+			
+		<div class="field">
+			<div class="label">Data semnarii:</div>
+			<div class="input"><span wicket:id="label-contractSignDate"></span></div>
+		</div>
+		
+		<div class="field">
+			<div class="label">Data incheierii:</div>
+			<div class="input"><span wicket:id="label-contractEndDate"></span></div>
+		</div>
+
+		<div class="field">
+			<div class="label">Acte aditionale:</div>
+			<div class="input"><a id="link-showContractDocs"><span wicket:id="label-contractDocsNumber"></span></a>
+				<a wicket:id="link-addContractDoc">adauga</a></div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="panel" style="float:left; margin-left: 10px">
+	<div class="title">Servicii</div>
+	<div class="content" style="float: left">
+	
+		<div class="field">
+			<div class="label">Nr servicii:</div>
+			<div class="input"><span wicket:id="label-servicesNumber">6</span></div>
+		</div>
+			
+		<div class="field">
+			<div class="label">Locatii:</div>
+			<div class="input"><span wicket:id="label-locationsNumber">2</span></div>
+		</div>
+		
+	</div>
+</div>
+
+
+<div class="panel" style="float:left; margin-left: 10px">
+	<div class="title">Facturi/Plati</div>
+	<div class="content" style="float: left">
+	
+		<div class="field">
+			<div>Facturi: <span wicket:id="label-invoicesNumber">6 (1)</span></div> 
+			<div>Plati: <span wicket:id="label-paymentsNumber">2</span></div>
+			<div><a wicket:id="link-showInvoicesAndPayments">[listeaza]</a></div>
+		</div>
+
+<!-- 			
+		<div class="field">
+			<a wicket:id="link-addInvoice">Adauga factura</a>
+		</div>
+ -->		
+		<div class="field">
+			<a wicket:id="link-addPayment">Efectueaza plata</a>
+		</div>
+		
+	</div>
+</div>
+
+
+<wicket:child />
+
+
+</wicket:extend>
+</html>

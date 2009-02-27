@@ -13,7 +13,7 @@ import org.apache.wicket.model.PropertyModel;
 public class ContractGenericServiceEditPanel
 		extends AbstractContractServiceEditPanel<ContractGenericService>
 {
-	public ContractGenericServiceEditPanel(String id, IModel<ContractGenericService> model, Form<Object> form)
+	public ContractGenericServiceEditPanel(final String id, final IModel<ContractGenericService> model, final Form<Object> form)
 	{
 		super(id, model, form);
 

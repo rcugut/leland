@@ -1,10 +1,17 @@
 package leland.dao;
 
 
-public class ClientManager
+
+public class BillingManager
 {
 	private BaseDao dao;
 
+	
+	
+//	public boolean isServiceBilled(AbstractService service)
+//	{
+////		dao.
+//	}
 	
 	
 	
@@ -17,6 +24,7 @@ public class ClientManager
 	
 	public BaseDao getDao()
 	{
+		
 		return this.dao;
 	}
 	public void setDao(BaseDao dao)

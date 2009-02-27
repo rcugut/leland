@@ -16,8 +16,8 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-public class LelandDaoImpl
-		extends HibernateDaoSupport implements LelandDao
+public class BaseDaoImpl
+		extends HibernateDaoSupport implements BaseDao
 {
 	
 	public <T extends BaseEntity> T get(final Class<T> clazz, final Serializable id)
@@ -54,7 +54,13 @@ public class LelandDaoImpl
 	}
 	
 	
-	
+
+
+	public void persist(final BaseEntity entity)
+	{
+		this.getHibernateTemplate().persist(entity);
+	}
+
 	public void save(final BaseEntity entity)
 	{
 		entity.setDateUpdated(Calendar.getInstance().getTime());
@@ -105,5 +111,5 @@ public class LelandDaoImpl
 	public void flush()
 	{
 		this.getHibernateTemplate().flush();
-	}	
+	}
 }

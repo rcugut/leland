@@ -1,0 +1,35 @@
+<html xmlns:wicket>
+<head>
+</head>
+<wicket:extend>
+
+<div style="clear:both;">
+
+<hr />
+
+<h2>Plata factura</h2>
+
+<br />
+
+
+Factura: <span wicket:id="label-invoiceNumber"></span>
+<br />
+Data emiterii: <span wicket:id="label-issueDate"></span>
+<br />
+Valoare (cu tva): <span wicket:id="label-invoiceAmountWithTax"></span>
+
+<br />
+
+<form wicket:id="form-newPayment">
+
+	Valoare plata: <input wicket:id="input-paymentAmount" type="text" />
+	
+	<div wicket:id="feedback"></div>
+	
+	<input type="submit" value="Incaseza plata" />
+
+</form>
+
+</div>
+</wicket:extend>
+</html>
