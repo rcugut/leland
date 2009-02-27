@@ -15,7 +15,14 @@ public class ContractInternetServiceViewPanel
 	{
 		super(id, model);
 
-//		this.add(new Label<String>("label-details", service.));
+		this.add(new Label<String>("label-totalDownload", 
+				service.getContractedTotalDownloadCir() + "/" + service.getContractedTotalDownloadMir() + " kbps"));
+		
+		this.add(new Label<String>("label-totalUpload", 
+				service.getContractedTotalUploadCir() + "/" + service.getContractedTotalUploadMir() + " kbps"));
+
+		this.add(new Label<String>("label-nrIp",
+				String.valueOf(service.getNbOfIpAddresses())));
 		
 		this.add(new Label<String>("label-details", service.getDetails()));
 	}

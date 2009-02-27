@@ -72,6 +72,21 @@ div.panel div.smallerTitle {
 
 /* ---------------------------------------------------------- */
 
+.table-searchResults thead tr td {
+	background: #666;
+	color: #fff;
+}
+
+.table-searchResults tbody tr td {
+	background: #eee;
+	color: #000;
+}
+
+
+/* ---------------------------------------------------------- */
+
+
+
 div.field {
 	float: left;
 	clear: both;

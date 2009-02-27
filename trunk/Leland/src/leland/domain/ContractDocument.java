@@ -1,7 +1,9 @@
 package leland.domain;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -19,14 +21,25 @@ import leland.domain.base.BaseEntity;
 public final class ContractDocument
 		extends BaseEntity
 {
-	private String number;
+	private String number = "";
 
-	private Date signDate; // data semnarii
+	private Date signDate = Calendar.getInstance().getTime(); // data semnarii
 	private Date stopDate; // valabilitate
 
 	private List<ContractChange> contractChanges = new ArrayList<ContractChange>();
 	
 	private String otherNotes;
+	
+	
+	
+	public ContractDocument()
+	{
+		super();
+		Calendar c = GregorianCalendar.getInstance();
+		c.add(Calendar.DAY_OF_YEAR, 365);
+		this.stopDate = c.getTime();
+	}
+	
 	
 	
 	@Basic(optional=false)

@@ -1,0 +1,84 @@
+<html xmlns:wicket>
+<head>
+</head>
+<wicket:extend>
+
+<div style="clear:both;">
+
+<hr />
+
+<h2>Sumar</h2>
+
+Total facturi neplatite: 0
+<br />
+Avans: 0
+
+
+
+<div wicket:id="container-invoicesList">
+	<hr />
+	
+	<h2>Facturi</h2>
+	
+	<table cellspacing="2" cellpadding="2" border="1">
+		<thead>
+			<tr>
+				<td>Serie/Nr</td>
+				<td>Data emiterii</td>
+				<td>Valoare (fara TVA)</td>
+				<td>Valoare (cu TVA)</td>
+			</tr>
+		</thead>  	
+
+		<tbody>
+			<tr wicket:id="row-invoice" 
+				onmouseover="LND.ClientsList.onTrMouseOver(this)"
+				onmouseout="LND.ClientsList.onTrMouseOut(this)">
+				<td><span wicket:id="label-invoiceNumber"></span></td>
+				<td><span wicket:id="label-issueDate"></span></td>
+				<td><span wicket:id="label-amountWithoutTax"></span></td>
+				<td><span wicket:id="label-amountWithTax"></span></td>
+				<td><a wicket:id="link-pay">Plateste</a>&nbsp;</td>
+			</tr>
+		</tbody>  	
+	</table>
+  
+	<div wicket:id="navigator-invoicesList" class="page-navigator"></div>
+</div>
+
+
+
+<div wicket:id="container-paymentsList">
+	<hr />
+	
+	<h2>Plati</h2>
+	
+	<table cellspacing="2" cellpadding="2" border="1">
+		<thead>
+			<tr>
+				<td>Mod plata</td>
+				<td>Data incasare</td>
+				<td>Pt factura</td>
+				<td>Valoare</td>
+			</tr>
+		</thead>  	
+
+		<tbody>
+			<tr wicket:id="row-payment" 
+				onmouseover="LND.ClientsList.onTrMouseOver(this)"
+				onmouseout="LND.ClientsList.onTrMouseOut(this)">
+				<td><span wicket:id="label-paymentType"></span></td>
+				<td><span wicket:id="label-paymentDate"></span></td>
+				<td><span wicket:id="label-invoice"></span></td>
+				<td><span wicket:id="label-amount"></span></td>
+			</tr>
+		</tbody>  	
+	</table>
+  
+	<div wicket:id="navigator-paymentsList" class="page-navigator"></div>
+</div>
+
+
+</div>
+</wicket:extend>
+</html>

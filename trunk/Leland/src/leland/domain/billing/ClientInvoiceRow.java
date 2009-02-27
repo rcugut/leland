@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import leland.domain.AbstractService;
 import leland.domain.base.EntityWithName;
 
 @Entity
@@ -11,37 +12,27 @@ import leland.domain.base.EntityWithName;
 public final class ClientInvoiceRow
 		extends EntityWithName
 {
-	private ClientInvoice invoice;
-	
-	private String description;
-	private int quantity;
+	private int quantity = 1;
 
-	private double vatRate; //cota tva in %
+	private double vatRate = 19; //cota tva in %
 	private double price; // fara TVA
-//	private double discount; // %
+	private AbstractService service;
 
 	
 	
-	@ManyToOne()
-	public ClientInvoice getInvoice()
+	public ClientInvoiceRow()
 	{
-		return this.invoice;
-	}
-	public void setInvoice(ClientInvoice invoice)
-	{
-		this.invoice = invoice;
+		super();
 	}
 	
-	
-	
-	public String getDescription()
+	public ClientInvoiceRow(String name, String description, double price)
 	{
-		return this.description;
+		super(name);
+		this.price = price;
 	}
-	public void setDescription(String description)
-	{
-		this.description = description;
-	}
+
+
+
 	public int getQuantity()
 	{
 		return this.quantity;
@@ -50,6 +41,7 @@ public final class ClientInvoiceRow
 	{
 		this.quantity = quantity;
 	}
+
 	public double getVatRate()
 	{
 		return this.vatRate;
@@ -58,6 +50,7 @@ public final class ClientInvoiceRow
 	{
 		this.vatRate = vatRate;
 	}
+	
 	public double getPrice()
 	{
 		return this.price;
@@ -65,5 +58,15 @@ public final class ClientInvoiceRow
 	public void setPrice(double price)
 	{
 		this.price = price;
+	}
+
+	@ManyToOne(optional=true)
+	public AbstractService getService()
+	{
+		return this.service;
+	}
+	public void setService(AbstractService service)
+	{
+		this.service = service;
 	}
 }
